@@ -73,4 +73,14 @@ defmodule MoxTestTest do
       assert log =~ ~r/not found/
     end
   end
+
+  describe "try to expect" do
+    test "the unexpected" do
+      expect @service_mock, :destroy_user, fn ->
+        :evil_laugh
+      end
+
+      @service_mock.destroy_user("root")
+    end
+  end
 end
